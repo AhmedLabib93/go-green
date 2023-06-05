@@ -1,12 +1,7 @@
 package com.recycling.gogreen.service;
 
-import com.recycling.gogreen.model.request.CartItemRequest;
-import com.recycling.gogreen.model.response.CartItemResponse;
-import com.recycling.gogreen.repository.CartItemRepository;
-import com.recycling.gogreen.repository.ProductRepository;
-import com.recycling.gogreen.repository.UserRepository;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.recycling.gogreen.payload.request.CartItemRequest;
+import com.recycling.gogreen.payload.response.CartItemResponse;
 
 import java.util.List;
 

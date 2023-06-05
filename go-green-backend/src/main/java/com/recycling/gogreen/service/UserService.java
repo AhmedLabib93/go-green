@@ -1,8 +1,7 @@
 package com.recycling.gogreen.service;
 
-import com.recycling.gogreen.model.User;
-import com.recycling.gogreen.model.request.UserRequest;
-import com.recycling.gogreen.model.response.UserResponse;
+import com.recycling.gogreen.payload.request.UserRequest;
+import com.recycling.gogreen.payload.response.UserResponse;
 
 import java.util.List;
 
@@ -12,7 +11,7 @@ public interface UserService {
 
     List<UserResponse> getUsers();
 
-    UserResponse findByUsername(String username);
+    UserResponse getUserByUsername(String username);
 
     UserResponse updateUser(long id, UserRequest userRequest);
 

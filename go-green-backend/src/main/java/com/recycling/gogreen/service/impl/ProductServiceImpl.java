@@ -2,8 +2,8 @@ package com.recycling.gogreen.service.impl;
 
 import com.recycling.gogreen.exception.ResourceNotFound;
 import com.recycling.gogreen.model.Product;
-import com.recycling.gogreen.model.request.ProductRequest;
-import com.recycling.gogreen.model.response.ProductResponse;
+import com.recycling.gogreen.payload.request.ProductRequest;
+import com.recycling.gogreen.payload.response.ProductResponse;
 import com.recycling.gogreen.repository.ProductRepository;
 import com.recycling.gogreen.service.ProductService;
 import org.modelmapper.ModelMapper;
@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponse findById(long id) {
+    public ProductResponse getProductById(long id) {
         Product product = productRepository.findById(id).orElseThrow(()
                 -> new ResourceNotFound(String.format("Product with id %d not found", id)));
         return modelMapper.map(product, ProductResponse.class);

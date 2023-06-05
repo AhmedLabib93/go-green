@@ -2,14 +2,13 @@ package com.recycling.gogreen.service.impl;
 
 import com.recycling.gogreen.exception.ResourceNotFound;
 import com.recycling.gogreen.model.User;
-import com.recycling.gogreen.model.request.UserRequest;
-import com.recycling.gogreen.model.response.UserResponse;
+import com.recycling.gogreen.payload.request.UserRequest;
+import com.recycling.gogreen.payload.response.UserResponse;
 import com.recycling.gogreen.repository.UserRepository;
 import com.recycling.gogreen.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,7 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse findByUsername(String username) {
+    public UserResponse getUserByUsername(String username) {
         User user = userRepository.findByUsername(username).orElseThrow(()
                 -> new ResourceNotFound(String.format("User with username %s not found", username)));
         return modelMapper.map(user, UserResponse.class);

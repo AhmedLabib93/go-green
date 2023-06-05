@@ -41,8 +41,7 @@ public class User {
     @Column(nullable = false, length = 15)
     private String phone;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cartItemPK.user", cascade = CascadeType.ALL)
     private List<CartItem> cartItems;
 
 }

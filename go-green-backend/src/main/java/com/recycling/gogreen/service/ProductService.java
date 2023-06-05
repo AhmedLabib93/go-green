@@ -1,7 +1,7 @@
 package com.recycling.gogreen.service;
 
-import com.recycling.gogreen.model.request.ProductRequest;
-import com.recycling.gogreen.model.response.ProductResponse;
+import com.recycling.gogreen.payload.request.ProductRequest;
+import com.recycling.gogreen.payload.response.ProductResponse;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public interface ProductService {
 
     List<ProductResponse> getProducts();
 
-    ProductResponse findById(long id);
+    ProductResponse getProductById(long id);
 
     ProductResponse updateProduct(long id, ProductRequest productRequest);
 

@@ -16,10 +16,12 @@ import java.io.Serializable;
 @Embeddable
 public class CartItemPK implements Serializable {
 
+    @JsonIgnore
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User user;
 
+    @JsonIgnore
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name="product_id")
     private Product product;
