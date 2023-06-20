@@ -2,7 +2,7 @@ package com.recycling.gogreen.service.impl;
 
 import com.recycling.gogreen.exception.ResourceNotFound;
 import com.recycling.gogreen.model.User;
-import com.recycling.gogreen.payload.request.UserRequest;
+import com.recycling.gogreen.payload.UserRegister;
 import com.recycling.gogreen.payload.response.UserResponse;
 import com.recycling.gogreen.repository.UserRepository;
 import com.recycling.gogreen.service.UserService;
@@ -22,31 +22,23 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private ModelMapper modelMapper;
 
-    //@Autowired
-    //private PasswordEncoder passwordEncoder;
-
-    @Override
-    public UserResponse addUser(UserRequest userRequest) {
-        User user = modelMapper.map(userRequest, User.class);
-        User savedUser = userRepository.save(user);
-        return modelMapper.map(savedUser, UserResponse.class);
-    }
-
     @Override
     public List<UserResponse> getUsers() {
-        return userRepository.findAll().stream().map((user)
+        List<User> users = userRepository.findAll();
+
+        return users.stream().map((user)
                 -> modelMapper.map(user, UserResponse.class)).collect(Collectors.toList());
     }
 
     @Override
-    public UserResponse getUserByUsername(String username) {
-        User user = userRepository.findByUsername(username).orElseThrow(()
-                -> new ResourceNotFound(String.format("User with username %s not found", username)));
+    public UserResponse getUserByUsernameOrEmail(String usernameOrEmail) {
+        User user = userRepository.findUserByUsernameOrEmail(usernameOrEmail, usernameOrEmail).orElseThrow(()
+                -> new ResourceNotFound(String.format("User with username/email %s not found", usernameOrEmail)));
         return modelMapper.map(user, UserResponse.class);
     }
 
     @Override
-    public UserResponse updateUser(long id, UserRequest userRequest) {
+    public UserResponse updateUser(long id, UserRegister userRequest) {
         User user = userRepository.findById(id).orElseThrow(()
                 -> new ResourceNotFound(String.format("User with id %d not found", id)));
         //user.setId(id);

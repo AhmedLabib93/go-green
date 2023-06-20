@@ -12,9 +12,8 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/gogreen/v1/cartitems/")
+@RequestMapping("/gogreen/v1/cartitems")
 public class CartItemController {
-
 
     @Autowired
     private CartItemService cartItemService;
@@ -45,7 +44,6 @@ public class CartItemController {
     @DeleteMapping("/{user-id}/{product-id}")
     public ResponseEntity<String> deleteCartItem(@RequestParam(name = "user-idd") long userId,
                                                  @RequestParam(name = "product-id") long productId) {
-
         cartItemService.deleteCartItem(userId, productId);
         return new ResponseEntity<String>("CartItem deleted successfully!", HttpStatus.ACCEPTED);
     }

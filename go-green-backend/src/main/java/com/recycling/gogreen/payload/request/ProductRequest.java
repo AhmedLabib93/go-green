@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.math.BigDecimal;
@@ -28,9 +29,6 @@ public class ProductRequest {
 
     @NotBlank(message = "Product price can't be empty")
     private BigDecimal price;
-
-    @CreatedDate
-    private Date addDate;
 
     private byte[] image;
 }
